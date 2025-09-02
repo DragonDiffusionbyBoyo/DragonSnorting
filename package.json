@@ -1,0 +1,79 @@
+{
+  "name": "dragon-image-scraper",
+  "version": "1.0.0",
+  "description": "🐉 Local AI-powered image scraping tool for LoRA dataset creation - Production Ready",
+  "main": "dragon-launcher.js",
+  "scripts": {
+    "start": "node dragon-launcher.js",
+    "dragon": "node dragon-launcher.js",
+    "test": "jest",
+    "test:phase1": "node index.js",
+    "test:phase2": "node google-images-scraper.js",
+    "test:enhanced": "node enhanced-test.js",
+    "analyse": "node enhanced-test.js --analyse",
+    "dev": "nodemon dragon-launcher.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "pkg dragon-launcher.js --targets node18-win-x64,node18-macos-x64,node18-linux-x64 --output dist/dragon-scraper",
+    "setup": "npm install && node -e \"console.log('🐉 Dragon setup complete! Run: npm run dragon')\"",
+    "debug": "DEBUG=1 node dragon-launcher.js"
+  },
+  "bin": {
+    "dragon-scraper": "./dragon-launcher.js"
+  },
+  "keywords": [
+    "ai", 
+    "image-scraping", 
+    "lora", 
+    "local", 
+    "dragons", 
+    "google-images",
+    "web-scraping",
+    "dataset-creation"
+  ],
+  "author": "Dragon Team",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragon-team/dragon-image-scraper.git"
+  },
+  "dependencies": {
+    "puppeteer": "^21.7.0",
+    "sharp": "^0.33.1",
+    "axios": "^1.6.5",
+    "fs-extra": "^11.2.0",
+    "dotenv": "^16.3.1",
+    "chalk": "^4.1.2",
+    "cli-progress": "^3.12.0",
+    "inquirer": "^8.2.6",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "nodemon": "^3.0.2",
+    "pkg": "^5.8.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "pkg": {
+    "scripts": [
+      "dragon-launcher.js",
+      "enhanced-google-images-scraper.js",
+      "index.js"
+    ],
+    "assets": [
+      "node_modules/puppeteer/.local-chromium/**/*"
+    ]
+  },
+  "files": [
+    "dragon-launcher.js",
+    "enhanced-google-images-scraper.js", 
+    "enhanced-test.js",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
