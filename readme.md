@@ -100,11 +100,12 @@ This scraper is built on a modular architecture:
 
 ## License
 
-This project is licensed under the [LICENSE-NAME]. Please remember to include a `LICENSE` file in your repository.
+MIT
 
 -----
 
 ## Acknowledgments
 
   * Developed with the assistance of a local Large Language Model.
+
   * This project would not be possible without the open-source Node.js community and related libraries.
