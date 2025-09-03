@@ -45,19 +45,32 @@ class EnhancedGoogleImagesScraper extends DragonImageScraper {
         return this.userAgents[Math.floor(Math.random() * this.userAgents.length)];
     }
 
-    buildGoogleImagesURL(searchTerm) {
-        const params = new URLSearchParams({
-            q: searchTerm,
-            tbm: 'isch',
-            safe: this.googleOptions.safeSearch,
-            tbs: `isz:${this.googleOptions.size},itp:${this.googleOptions.imageType}`,
-            hl: 'en-GB',
-            gl: 'gb'
-        });
-        
-        return `https://www.google.com/search?${params.toString()}`;
-    }
+    // Fix for buildGoogleImagesURL method in enhanced-google-images-scraper.js
 
+buildGoogleImagesURL(searchTerm) {
+    // Map human-readable size names to Google's expected codes
+    const sizeMap = {
+        'small': 's',
+        'medium': 'm', 
+        'large': 'l',
+        'xlarge': 'xl'
+    };
+    
+    // Get the correct Google size code
+    const googleSizeCode = sizeMap[this.googleOptions.size] || 'l';
+    
+    const params = new URLSearchParams({
+        q: searchTerm,
+        tbm: 'isch',
+        safe: this.googleOptions.safeSearch,
+        tbs: `isz:${googleSizeCode},itp:${this.googleOptions.imageType}`, // Now uses 'l' instead of 'large'
+        hl: 'en-GB',
+        gl: 'gb'
+    });
+    
+    return `https://www.google.com/search?${params.toString()}`;
+}
+    
     async searchGoogleImages(searchTerm, maxResults = null) {
         await this.ensureInitialized();
         await this.initializeBrowser();
